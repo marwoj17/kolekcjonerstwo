@@ -5,8 +5,6 @@ namespace CollectionSystem.Services
 {
     public static class FileService
     {
-        // Pełna ścieżka do pliku tekstowego, w którym przechowujemy wszystkie kolekcje.
-        // Plik znajduje się w katalogu aplikacji (AppDataDirectory).
         private static string filePath = Path.Combine(
             FileSystem.AppDataDirectory, "collections.txt");
 
@@ -16,13 +14,10 @@ namespace CollectionSystem.Services
 
             foreach (var col in collections)
             {
-                // Oznaczamy początek nowej kolekcji linią zaczynającą się od #COLLECTION:
-                // następne linie z ITEM: zawierają elementy kolekcji.
                 lines.Add($"#COLLECTION:{col.Name}");
 
                 foreach (var item in col.Items)
                 {
-                    // Element zapisujemy jako "ITEM:Tytuł|Opis". Separator '|' oddziela tytuł od opisu.
                     lines.Add($"ITEM:{item.Title}|{item.Description}");
                 }
             }
@@ -45,7 +40,6 @@ namespace CollectionSystem.Services
             {
                 if (line.StartsWith("#COLLECTION:"))
                 {
-                    // Nowa kolekcja - tworzymy obiekt i dodajemy do listy
                     current = new Collection
                     {
                         Name = line.Replace("#COLLECTION:", "")
@@ -54,7 +48,6 @@ namespace CollectionSystem.Services
                 }
                 else if (line.StartsWith("ITEM:") && current != null)
                 {
-                    // Parsujemy linię ITEM:Tytuł|Opis
                     var data = line.Replace("ITEM:", "").Split('|');
 
                     current.Items.Add(new CollectionItem
@@ -70,7 +63,6 @@ namespace CollectionSystem.Services
 
         public static string GetPath()
         {
-            // Zwracamy ścieżkę do pliku, używane w debugowaniu / informowaniu użytkownika
             return filePath;
         }
     }
