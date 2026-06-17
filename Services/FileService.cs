@@ -11,7 +11,6 @@ namespace CollectionSystem.Services
         public static void Save(List<Collection> collections)
         {
             List<string> lines = new List<string>();
-
             foreach (var col in collections)
             {
                 lines.Add($"#COLLECTION:{col.Name}");
@@ -21,7 +20,6 @@ namespace CollectionSystem.Services
                     lines.Add($"ITEM:{item.Title}|{item.Description}");
                 }
             }
-
             File.WriteAllLines(filePath, lines);
         }
 
@@ -57,10 +55,8 @@ namespace CollectionSystem.Services
                     });
                 }
             }
-
             return collections;
         }
-
         public static string GetPath()
         {
             return filePath;
