@@ -13,14 +13,12 @@ namespace CollectionSystem
         {
             InitializeComponent();
             collections = FileService.Load();
-
             CollectionsList.ItemsSource = collections;
         }
 
         private async void AddCollection(object sender, EventArgs e)
         {
             string name = await DisplayPromptAsync("Nowa kolekcja", "Podaj nazwę:");
-
             if (!string.IsNullOrEmpty(name))
             {
                 collections.Add(new Collection { Name = name });
@@ -62,14 +60,11 @@ namespace CollectionSystem
             var button = sender as Button;
             var selected = button?.BindingContext as Collection;
             if (selected == null) return;
-
             bool ok = await DisplayAlert("Usuń kolekcję", $"Czy na pewno usunąć '{selected.Name}'?", "Tak", "Nie");
             if (!ok) return;
-
             collections.Remove(selected);
             CollectionsList.ItemsSource = null;
             CollectionsList.ItemsSource = collections;
-
             FileService.Save(collections);
         }
     }
