@@ -4,30 +4,22 @@
              x:Class="CollectionSystem.Views.CollectionPage"
              Title="Kolekcja">
     <VerticalStackLayout Padding="10" Spacing="10">
-
         <Button Text="Dodaj element" Clicked="AddItem"/>
-
         <CollectionView x:Name="ItemsList">
-
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame BorderColor="Gray" Margin="5">
                         <VerticalStackLayout>
-
                             <Label Text="{Binding Title}" FontAttributes="Bold"/>
                             <Label Text="{Binding Description}" FontSize="12"/>
-
                             <HorizontalStackLayout>
                                 <Button Text="Edytuj" Clicked="EditItem"/>
                                 <Button Text="Usuń" Clicked="DeleteItem"/>
                             </HorizontalStackLayout>
-
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-
         </CollectionView>
-
     </VerticalStackLayout>
 </ContentPage>
