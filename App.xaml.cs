@@ -7,12 +7,9 @@ namespace CollectionSystem
     {
         public App()
         {
-            // Inicjalizacja komponentów aplikacji
             InitializeComponent();
 
 #if DEBUG
-            // W trybie debug wypisujemy ścieżkę do pliku z danymi
-            // Przydatne podczas testów i sprawdzania, gdzie zapisuje się collections.txt
             Debug.WriteLine($"Data path: {FileService.GetPath()}");
 #endif
         }
