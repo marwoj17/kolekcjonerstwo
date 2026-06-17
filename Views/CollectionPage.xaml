@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CollectionSystem.Views.CollectionPage"
+             Title="Kolekcja">
+    <VerticalStackLayout Padding="10" Spacing="10">
+
+        <!-- Przycisk dodawania elementu do aktualnie otwartej kolekcji -->
+        <Button Text="Dodaj element" Clicked="AddItem"/>
+
+        <!-- Lista elementów w kolekcji -->
+        <CollectionView x:Name="ItemsList">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Każdy element wyświetlany jest w ramce z tytułem i opisem oraz przyciskami akcji -->
+                    <Frame BorderColor="Gray" Margin="5">
+                        <VerticalStackLayout>
+
+                            <!-- Tytuł elementu -->
+                            <Label Text="{Binding Title}" FontAttributes="Bold"/>
+                            <!-- Opis elementu -->
+                            <Label Text="{Binding Description}" FontSize="12"/>
+
+                            <!-- Przyciski edycji i usuwania pojedynczego elementu -->
+                            <HorizontalStackLayout>
+                                <Button Text="Edytuj" Clicked="EditItem"/>
+                                <Button Text="Usuń" Clicked="DeleteItem"/>
+                            </HorizontalStackLayout>
+
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>
