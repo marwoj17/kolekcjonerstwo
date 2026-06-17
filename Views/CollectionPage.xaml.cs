@@ -10,20 +10,17 @@ public partial class CollectionPage : ContentPage
 
     public CollectionPage(Collection col, List<Collection> all)
     {
-        // Konstruktor strony szczegółów kolekcji
-        // Otrzymujemy referencję do pojedynczej kolekcji oraz listy wszystkich kolekcji
+
         InitializeComponent();
 
         collection = col;
         allCollections = all;
 
-        // Ustawiamy źródło danych dla listy elementów w tej kolekcji
         ItemsList.ItemsSource = collection.Items;
     }
 
     private async void AddItem(object sender, EventArgs e)
     {
-        // Dodawanie nowego elementu do wybranej kolekcji
         string title = await DisplayPromptAsync("Nowy element", "Tytuł:");
         if (string.IsNullOrEmpty(title)) return;
 
@@ -35,7 +32,6 @@ public partial class CollectionPage : ContentPage
             Description = desc
         });
 
-        // Odświeżamy widok i zapisujemy zmiany
         RefreshList();
     }
 
@@ -45,7 +41,6 @@ public partial class CollectionPage : ContentPage
         var item = button?.BindingContext as CollectionItem;
 
         if (item == null) return;
-        // Edycja pojedynczego elementu kolekcji
         string newTitle = await DisplayPromptAsync("Edycja", "Nowy tytuł:", initialValue: item.Title);
         if (string.IsNullOrEmpty(newTitle)) return;
 
@@ -54,7 +49,6 @@ public partial class CollectionPage : ContentPage
         item.Title = newTitle;
         item.Description = newDesc;
 
-        // Zapis i odświeżenie listy
         RefreshList();
     }
 
@@ -64,10 +58,8 @@ public partial class CollectionPage : ContentPage
         var item = button?.BindingContext as CollectionItem;
 
         if (item == null) return;
-        // Usuwamy pojedynczy element z kolekcji
         collection.Items.Remove(item);
 
-        // Zapis / odświeżenie
         RefreshList();
     }
 
@@ -75,7 +67,6 @@ public partial class CollectionPage : ContentPage
     {
         ItemsList.ItemsSource = null;
         ItemsList.ItemsSource = collection.Items;
-        // Po każdej zmianie zapisujemy całą listę kolekcji do pliku
         FileService.Save(allCollections);
     }
 }
