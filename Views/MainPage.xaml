@@ -6,24 +6,14 @@
     <ScrollView>
         <VerticalStackLayout>
 
-            <!-- Przycisk dodawania nowej kolekcji -->
             <Button Text="Dodaj kolekcję" Clicked="AddCollection"/>
 
-            <!--
-                Lista kolekcji. Każdy element zawiera nazwę oraz przyciski:
-                Otwórz  - przejście do szczegółów kolekcji
-                Edytuj  - szybka zmiana nazwy kolekcji
-                Usuń    - usuwanie kolekcji z potwierdzeniem
-            -->
             <CollectionView x:Name="CollectionsList" SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <!-- Ramka poprawiająca czytelność elementu listy -->
                         <Frame CornerRadius="8" Padding="10" Margin="5" BorderColor="LightGray">
                             <HorizontalStackLayout VerticalOptions="Center" Spacing="10">
-                                <!-- Nazwa kolekcji (wiąże się z właściwością Name) -->
                                 <Label Text="{Binding Name}" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontAttributes="Bold" />
-                                <!-- Przyciski akcji dla danej kolekcji -->
                                 <Button Text="Otwórz" Clicked="OpenCollectionButton" BackgroundColor="#2196F3" TextColor="White" CornerRadius="6" />
                                 <Button Text="Edytuj" Clicked="EditCollectionButton" BackgroundColor="#FF9800" TextColor="White" CornerRadius="6" />
                                 <Button Text="Usuń" Clicked="DeleteCollectionButton" BackgroundColor="#E53935" TextColor="White" CornerRadius="6" />
