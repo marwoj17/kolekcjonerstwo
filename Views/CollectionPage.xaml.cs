@@ -10,12 +10,9 @@ public partial class CollectionPage : ContentPage
 
     public CollectionPage(Collection col, List<Collection> all)
     {
-
         InitializeComponent();
-
         collection = col;
         allCollections = all;
-
         ItemsList.ItemsSource = collection.Items;
     }
 
@@ -23,15 +20,12 @@ public partial class CollectionPage : ContentPage
     {
         string title = await DisplayPromptAsync("Nowy element", "Tytuł:");
         if (string.IsNullOrEmpty(title)) return;
-
         string desc = await DisplayPromptAsync("Opis", "Opis:");
-
         collection.Items.Add(new CollectionItem
         {
             Title = title,
             Description = desc
         });
-
         RefreshList();
     }
 
